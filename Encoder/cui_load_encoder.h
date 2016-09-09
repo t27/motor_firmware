@@ -1,12 +1,12 @@
 /*
- * cui_position_encoder.h
+ * cui_load_encoder.h
  *
- *  Created on: Aug 26, 2016
- *      Author: Kaustubh
+ *  Created on: 09-Sep-2016
+ *      Author: Tarang
  */
 
-#ifndef ENCODER_CUI_POSITION_ENCODER_H_
-#define ENCODER_CUI_POSITION_ENCODER_H_
+#ifndef ENCODER_CUI_LOAD_ENCODER_H_
+#define ENCODER_CUI_LOAD_ENCODER_H_
 
 #include <stdarg.h>
 #include <stdbool.h>
@@ -24,15 +24,13 @@
 #include "../commondef.h"
 
 
-class CUIPositionEncoder: public PositionEncoder {
-
+class CUILoadEncoder: public PositionEncoder {
 public:
-	CUIPositionEncoder();
-	~CUIPositionEncoder();
+	CUILoadEncoder();
+	virtual ~CUILoadEncoder();
 
-//	void setIndexHandler(void (*handler)());
 	uint32_t getPosition();
 	void setPosition(uint32_t position);
 };
 
-#endif /* ENCODER_CUI_POSITION_ENCODER_H_ */
+#endif /* ENCODER_CUI_LOAD_ENCODER_H_ */

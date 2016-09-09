@@ -46,8 +46,9 @@ Programing Style Guide
 #include "utils/uartstdio.h"
 #include "driverlib/systick.h"
 
-#include "Encoder/ams_position_encoder.h"
+//#include "Encoder/ams_position_encoder.h"
 #include "Encoder/cui_position_encoder.h"
+#include "Encoder/cui_load_encoder.h"
 #include "ForceSensor/current_force_sensor.h"
 #include "MainBus/can_bus.h"
 #include "MotorDriver/motor_driver_5015a.h"
@@ -58,7 +59,8 @@ Programing Style Guide
 #define MAX_ENCODER_COUNT 16384 //0-16383
 #define F_CPU 80000000
 
-volatile bool is_homing_done;
+volatile bool is_position_homing_done;
+volatile bool is_load_homing_done;
 volatile uint64_t TIME_MICROS;
 
 #endif /* COMMONDEF_H_ */

@@ -7,7 +7,7 @@
 
 #include "cui_position_encoder.h"
 
-void indexInterrupt();
+void positionIndexInterrupt();
 
 CUIPositionEncoder::CUIPositionEncoder() {
 
@@ -48,7 +48,7 @@ CUIPositionEncoder::CUIPositionEncoder() {
 	//Enable the QEI again
 	QEIEnable(QEI0_BASE);
 	QEIIntEnable(QEI0_BASE, QEI_INTINDEX);
-	QEIIntRegister(QEI0_BASE, indexInterrupt);
+	QEIIntRegister(QEI0_BASE, positionIndexInterrupt);
 }
 
 CUIPositionEncoder::~CUIPositionEncoder() {
@@ -72,8 +72,8 @@ void CUIPositionEncoder::setPosition(uint32_t position){
 }
 
 
-void indexInterrupt(){
-	is_homing_done = true;
+void positionIndexInterrupt(){
+	is_position_homing_done = true;
 	QEIIntClear(QEI0_BASE, QEI_INTINDEX);
 	QEIIntDisable(QEI0_BASE, QEI_INTINDEX);
 }

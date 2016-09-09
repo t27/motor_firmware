@@ -76,7 +76,7 @@ SimpleDelay(void)
 
 void handler()
 {
-	is_homing_done = true;
+	is_position_homing_done = true;
 	printf("\nboom\n");
 }
 
@@ -112,9 +112,10 @@ int main(void)
 #endif
 
 	/*** Init classes, variables ***/
-	is_homing_done = false; //false if not done, true if done
+	is_position_homing_done = false; //false if not done, true if done
 //	AMSPositionEncoder cAMSPositionEncoder;
 	CUIPositionEncoder cCUIPositionEncoder;
+	CUILoadEncoder cCUILoadEncoder;
 	Params cParams;
 	//	PID cPID(1, 100, -100, 0.01, 0.0085, 0.000003);//0.0031
 //	PID cPID(50000, 100, -100, 0.014, 0.045, 0);//0.007,d=2.9 @50
@@ -142,12 +143,14 @@ int main(void)
 			while(1){}
 		}
 
-		if(is_homing_done && first_time) {
+		if(is_position_homing_done && first_time) {
 			first_time = false;
+			cCUILoadEncoder.setPosition(0);// Setting current position as home
+			// TODO: handle the case where the load may be in a non zero position initially(Motor is experiencing a default load)
 			prevTime = TIME_MICROS;
 		}
 
-		if (is_homing_done) {
+		if (is_position_homing_done) {
 
 			// Read the current position from the encoder and udpate the params class
 			current_position = cCUIPositionEncoder.getPosition();
