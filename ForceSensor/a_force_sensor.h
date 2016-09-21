@@ -7,12 +7,12 @@
 
 #ifndef HALCLASSES_FORCESENSOR_FORCESENSOR_H_
 #define HALCLASSES_FORCESENSOR_FORCESENSOR_H_
-
+#include <stdint.h>
 class ForceSensor {
 public:
 	ForceSensor();
 	virtual ~ForceSensor();
-	virtual double getTorque() = 0;
+	virtual uint32_t getTorque() = 0;
 };
 
 #endif /* HALCLASSES_FORCESENSOR_FORCESENSOR_H_ */

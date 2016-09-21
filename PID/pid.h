@@ -24,6 +24,16 @@ class PID
         // Returns the manipulated variable given a setpoint and current process value
         double calculate( double setpoint, double pv );
         ~PID();
+		double getKd() const;
+		void setKd(double kd);
+		double getKi() const;
+		void setKi(double ki);
+		double getKp() const;
+		void setKp(double kp);
+		double getMax() const;
+		void setMax(double max);
+		double getMin() const;
+		void setMin(double min);
 
     private:
         double dt_;

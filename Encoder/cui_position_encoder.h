@@ -32,7 +32,9 @@ public:
 
 //	void setIndexHandler(void (*handler)());
 	uint32_t getPosition();
+	uint32_t getVelocity();
 	void setPosition(uint32_t position);
+	uint16_t getIndex();
 };
 
 #endif /* ENCODER_CUI_POSITION_ENCODER_H_ */

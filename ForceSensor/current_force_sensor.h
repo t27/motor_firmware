@@ -25,8 +25,19 @@ class CurrentForceSensor: public ForceSensor {
 public:
 	CurrentForceSensor();
 	virtual ~CurrentForceSensor();
-	double getTorque();
-	double getCurrent();
+	uint32_t getTorque();
+	uint32_t getFilteredCurrent();
+
+
+private:
+	uint32_t getCurrentAvg();
+	uint32_t getCurrent();
+	uint32_t getCurrentMovingAvg();
+	const int sequenceNum = 0;
+	uint32_t total;
+	uint32_t readings[8];
+	uint32_t readIndex;
+	uint8_t numReadings;
 };
 
 #endif /* HALCLASSES_FORCESENSOR_CURRENTFORCESENSOR_H_ */

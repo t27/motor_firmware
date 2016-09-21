@@ -47,8 +47,14 @@ CUIPositionEncoder::CUIPositionEncoder() {
 
 	//Enable the QEI again
 	QEIEnable(QEI0_BASE);
+
+//	QEIVelocityConfigure(QEI0_BASE, QEI_VELDIV_1, 2);
+//	QEIVelocityEnable(QEI0_BASE);
+
 	QEIIntEnable(QEI0_BASE, QEI_INTINDEX);
 	QEIIntRegister(QEI0_BASE, positionIndexInterrupt);
+
+
 }
 
 CUIPositionEncoder::~CUIPositionEncoder() {
@@ -59,11 +65,21 @@ CUIPositionEncoder::~CUIPositionEncoder() {
 //	QEIIntRegister(QEI0_BASE, indexInterrupt);
 //}
 
-uint32_t CUIPositionEncoder::getPosition(){
+uint16_t CUIPositionEncoder::getIndex() {
+	uint16_t val = GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4) >> 1;
+	return val;
+}
+
+uint32_t CUIPositionEncoder::getPosition() {
 	uint32_t position;
 	position = QEIPositionGet(QEI0_BASE);
-
 	return position;
+}
+
+uint32_t CUIPositionEncoder::getVelocity() {
+	uint32_t velocity;
+	velocity = QEIVelocityGet(QEI0_BASE);
+	return velocity;
 }
 
 
@@ -72,7 +88,7 @@ void CUIPositionEncoder::setPosition(uint32_t position){
 }
 
 
-void positionIndexInterrupt(){
+void positionIndexInterrupt() {
 	is_position_homing_done = true;
 	QEIIntClear(QEI0_BASE, QEI_INTINDEX);
 	QEIIntDisable(QEI0_BASE, QEI_INTINDEX);

@@ -88,6 +88,46 @@ PID::~PID()
 {
 }
 
+double PID::getKd() const {
+	return Kd_;
+}
+
+void PID::setKd(double kd) {
+	Kd_ = kd;
+}
+
+double PID::getKi() const {
+	return Ki_;
+}
+
+void PID::setKi(double ki) {
+	Ki_ = ki;
+}
+
+double PID::getKp() const {
+	return Kp_;
+}
+
+void PID::setKp(double kp) {
+	Kp_ = kp;
+}
+
+double PID::getMax() const {
+	return max_;
+}
+
+void PID::setMax(double max) {
+	max_ = max;
+}
+
+double PID::getMin() const {
+	return min_;
+}
+
+void PID::setMin(double min) {
+	min_ = min;
+}
+
 #endif
 
 

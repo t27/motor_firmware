@@ -43,7 +43,8 @@ CUILoadEncoder :: CUILoadEncoder() {
 	// revolution; therefore set the maximum position to 16,383 as the count
 	// is zero based.
 
-	QEIConfigure(QEI1_BASE, (QEI_CONFIG_CAPTURE_A_B  | QEI_CONFIG_RESET_IDX 	| QEI_CONFIG_QUADRATURE | QEI_CONFIG_NO_SWAP), 16383);
+//	QEIConfigure(QEI1_BASE, (QEI_CONFIG_CAPTURE_A_B  | QEI_CONFIG_RESET_IDX 	| QEI_CONFIG_QUADRATURE | QEI_CONFIG_NO_SWAP), 16383);
+	QEIConfigure(QEI1_BASE, (QEI_CONFIG_CAPTURE_A_B  | QEI_CONFIG_NO_RESET 	| QEI_CONFIG_QUADRATURE | QEI_CONFIG_NO_SWAP), 16383);
 
 	//Enable the QEI again
 	QEIEnable(QEI1_BASE);
